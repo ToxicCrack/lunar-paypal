@@ -44,7 +44,7 @@ class OrdersController
         $purchaseUnits[] = [
             'amount' => [
                 'currency_code' => $cart->total->currency->code,
-                'value' => $cart->total->value / $divider,
+                'value' => round($cart->total->value / $divider, 2),
             ],
         ];
 
