@@ -14,6 +14,13 @@ class OrdersController
     public function create(Request $request)
     {
         $cart = Cart::find($request->cart_id)->calculate();
+        if($cart->customer) {
+            Discounts::customerGroup($cart->customer->customerGroups);
+        } else {
+            Discounts::customerGroup($cart->user->customers->first()->customerGroups);
+        }
+        Discounts::apply($cart);
+        $cart = $cart->calculate();
 
         $order = Order::where('cart_id', $cart->id)->first() ?? $cart->createOrder();
 
