@@ -5,6 +5,7 @@ namespace Lancodev\LunarPaypal\Models;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Lunar\Models\Cart;
+use Lunar\Models\Currency;
 use Lunar\Models\Transaction;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -27,6 +28,19 @@ class Paypal
         $this->clientId = config("paypal.{$mode}.client_id");
     }
 
+    private function getPriceDivider($currency) {
+        if(is_string($currency)) {
+            $currency = Currency::where("code", $currency)->first();
+        }
+        $divider = 100;
+        if($currency->decimal_places == 3) {
+            $divider = 1000;
+        } elseif($currency->decimal_places == 4) {
+            $divider = 10000;
+        }
+        return $divider;
+    }
+
     public function cacheAccessToken()
     {
         return Cache::remember('paypal.access_token', 60 * 60 * 4, function () {
@@ -44,6 +58,7 @@ class Paypal
     public function authorize(Cart $cart, $order = null)
     {
         $cart->calculate();
+        $divider = $this->getPriceDivider($cart->currency);
 
         $payPalOrder = $this->client->createOrder([
             'intent' => 'CAPTURE',
@@ -51,7 +66,7 @@ class Paypal
                 [
                     'amount' => [
                         'currency_code' => $cart->currency->code,
-                        'value' => $cart->total / 100,
+                        'value' => $cart->total / $divider,
                     ],
                 ],
             ],
@@ -98,6 +113,7 @@ class Paypal
         $charge = $response['purchase_units'][0]['payments']['captures'][0];
 
         $transactions = [];
+        $divider = $this->getPriceDivider($transaction->order->currency_code);
 
         $transaction->update([
             'parent_transaction_id' => $transaction->id,
@@ -106,7 +122,7 @@ class Paypal
             'driver' => 'paypal',
             'card_type' => $cardType,
             'last_four' => $lastFour,
-            'amount' => $charge['amount']['value'] * 100,
+            'amount' => $charge['amount']['value'] * $divider,
             'reference' => $charge['id'],
             'status' => $charge['status'],
             'captured_at' => now(),
@@ -128,8 +144,9 @@ class Paypal
             $notes = 'Your refund has been processed.';
         }
         $randomId = uniqid('', true);
+        $divider = $this->getPriceDivider($transaction->order->currency_code);
         try {
-            $refund = $this->client->refundCapturedPayment($transaction->reference, $randomId, $amount / 100, $notes);
+            $refund = $this->client->refundCapturedPayment($transaction->reference, $randomId, $amount / $divider, $notes);
         } catch (\Exception $e) {
             return false;
         }
