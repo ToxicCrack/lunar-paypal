@@ -25,9 +25,9 @@ class LunarPaypalServiceProvider extends PackageServiceProvider
             return $app->make(PaypalPaymentType::class);
         });
 
-        Blade::directive('paypalScripts', function () use ($clientId, $clientToken) {
+        Blade::directive('paypalScripts', function ($currency="USD") use ($clientId, $clientToken) {
             return <<<EOT
-                <script src="https://www.paypal.com/sdk/js?components=buttons,hosted-fields&client-id={$clientId}&disable-funding=credit" data-client-token="{$clientToken}"></script>
+                <script src="https://www.paypal.com/sdk/js?components=buttons,hosted-fields&client-id={$clientId}&disable-funding=credit&currency={$currency}" data-client-token="{$clientToken}"></script>
             EOT;
         });
 
