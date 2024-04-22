@@ -115,8 +115,9 @@ class Paypal
         $transactions = [];
         $divider = $this->getPriceDivider($transaction->order->currency_code);
 
-        $transaction->update([
+        Transaction::create([
             'parent_transaction_id' => $transaction->id,
+            'order_id' => $transaction->order_id,
             'success' => $charge['status'] === 'COMPLETED',
             'type' => 'capture',
             'driver' => 'paypal',
