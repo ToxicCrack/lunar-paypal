@@ -50,7 +50,7 @@ class Paypal
             'purchase_units' => [
                 [
                     'amount' => [
-                        'currency_code' => 'USD',
+                        'currency_code' => $cart->currency->code,
                         'value' => $cart->total / 100,
                     ],
                 ],
