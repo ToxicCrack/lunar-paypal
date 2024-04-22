@@ -21,9 +21,9 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="lunar-paypal-views"
 ```
 
-Add the scripts to your layout file:
+Add the scripts to your view file, preferably in the checkout view, there you have the cart currency:
 ```bash
-@paypalScripts
+@paypalScripts($cart->currency->code)
 ```
 
 ## Usage
