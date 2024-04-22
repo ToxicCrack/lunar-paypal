@@ -58,6 +58,14 @@ class Paypal
     public function authorize(Cart $cart, $order = null)
     {
         $cart->calculate();
+        if($cart->customer) {
+            Discounts::customerGroup($cart->customer->customerGroups);
+        } else {
+            Discounts::customerGroup($cart->user->customers->first()->customerGroups);
+        }
+        Discounts::apply($cart);
+        $cart = $cart->calculate();
+        
         $divider = $this->getPriceDivider($cart->currency);
 
         $payPalOrder = $this->client->createOrder([
