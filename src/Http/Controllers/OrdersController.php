@@ -35,10 +35,16 @@ class OrdersController
 
         $purchaseUnits = [];
 
+        $divider = 100;
+        if($cart->currency->decimal_places == 3) {
+            $divider = 1000;
+        } elseif($cart->currency->decimal_places == 4) {
+            $divider = 10000;
+        }
         $purchaseUnits[] = [
             'amount' => [
                 'currency_code' => $cart->total->currency->code,
-                'value' => $cart->total->value / 100,
+                'value' => $cart->total->value / $divider,
             ],
         ];
 
