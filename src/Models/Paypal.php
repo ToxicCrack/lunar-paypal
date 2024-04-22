@@ -132,7 +132,7 @@ class Paypal
         $transaction->order->transactions()->createMany($transactions);
 
         $transaction->order->update([
-            'status' => config("lunar.payments.paypal.released", "paid"),
+            'status' => config("lunar.payments.types.paypal.released", "paid"),
             'placed_at' => now(),
         ]);
 
