@@ -23,7 +23,7 @@ php artisan vendor:publish --tag="lunar-paypal-views"
 
 Add the scripts to your view file, preferably in the checkout view, there you have the cart currency:
 ```bash
-@paypalScripts($cart->currency->code)
+@paypalScripts({{ $cart->currency->code }})
 ```
 
 ## Usage
