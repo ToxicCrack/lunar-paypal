@@ -1,17 +1,22 @@
 {
-    "name": "lancodev/lunar-paypal",
-    "description": "This is my package lunar-paypal",
+    "name": "ToxicCrack/lunar-paypal",
+    "description": "Forked lunar-paypal package with additional optimizations",
     "keywords": [
-        "lancodev",
+        "toxiccrack",
         "laravel",
         "lunar-paypal"
     ],
-    "homepage": "https://github.com/lancodev/lunar-paypal",
+    "homepage": "https://github.com/ToxicCrack/lunar-paypal",
     "license": "MIT",
     "authors": [
         {
             "name": "Kyle Anderson",
             "email": "kylekanderson@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Daniel Lichtblau",
+            "email": "info@lichtblau-it.de",
             "role": "Developer"
         }
     ],
