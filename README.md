@@ -21,6 +21,11 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="lunar-paypal-views"
 ```
 
+Add the scripts to your layout file:
+```bash
+@paypalScripts
+```
+
 ## Usage
 
 The package ships with a checkout component that allows payment via PayPal Express checkout or via on-site credit card payment.
