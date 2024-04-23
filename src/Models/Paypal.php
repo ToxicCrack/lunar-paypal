@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Lunar\Models\Cart;
 use Lunar\Models\Currency;
 use Lunar\Models\Transaction;
+use Lunar\Facades\Discounts;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class Paypal
