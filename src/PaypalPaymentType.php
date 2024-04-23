@@ -1,8 +1,8 @@
 <?php
 
-namespace Lancodev\LunarPaypal;
+namespace Lichtblauit\LunarPaypal;
 
-use Lancodev\LunarPaypal\Models\Paypal;
+use Lichtblauit\LunarPaypal\Models\Paypal;
 use Lunar\Base\DataTransferObjects\PaymentAuthorize;
 use Lunar\Base\DataTransferObjects\PaymentCapture;
 use Lunar\Base\DataTransferObjects\PaymentRefund;

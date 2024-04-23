@@ -1,16 +1,16 @@
 <?php
 
-namespace Lancodev\LunarPaypal\Facades;
+namespace Lichtblauit\LunarPaypal\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Lancodev\LunarPaypal\PaypalPaymentType
+ * @see \Lichtblauit\LunarPaypal\PaypalPaymentType
  */
 class LunarPaypal extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Lancodev\LunarPaypal\PaypalPaymentType::class;
+        return \Lichtblauit\LunarPaypal\PaypalPaymentType::class;
     }
 }

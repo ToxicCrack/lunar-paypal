@@ -1,9 +1,9 @@
 <?php
 
-namespace Lancodev\LunarPaypal\Tests;
+namespace Lichtblauit\LunarPaypal\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Lancodev\LunarPaypal\LunarPaypalServiceProvider;
+use Lichtblauit\LunarPaypal\LunarPaypalServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

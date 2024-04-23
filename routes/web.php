@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Lancodev\LunarPaypal\Http\Controllers\OrdersController;
-use Lancodev\LunarPaypal\Http\Controllers\WebhookController;
+use Lichtblauit\LunarPaypal\Http\Controllers\OrdersController;
+use Lichtblauit\LunarPaypal\Http\Controllers\WebhookController;
 
 Route::prefix('lunar-paypal')->group(function () {
     Route::post('/orders', [OrdersController::class, 'create'])->name('lunar-paypal.orders.create');

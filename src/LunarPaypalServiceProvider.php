@@ -1,10 +1,10 @@
 <?php
 
-namespace Lancodev\LunarPaypal;
+namespace Lichtblauit\LunarPaypal;
 
 use Illuminate\Support\Facades\Blade;
-use Lancodev\LunarPaypal\Components\PaymentForm;
-use Lancodev\LunarPaypal\Models\Paypal;
+use Lichtblauit\LunarPaypal\Components\PaymentForm;
+use Lichtblauit\LunarPaypal\Models\Paypal;
 use Livewire\Livewire;
 use Lunar\Facades\Payments;
 use Spatie\LaravelPackageTools\Package;

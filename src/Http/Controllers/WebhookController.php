@@ -1,9 +1,9 @@
 <?php
 
-namespace Lancodev\LunarPaypal\Http\Controllers;
+namespace Lichtblauit\LunarPaypal\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Lancodev\LunarPaypal\Events\PaypalWebhookReceived;
+use Lichtblauit\LunarPaypal\Events\PaypalWebhookReceived;
 use Srmklive\PayPal\Services\PayPal;
 
 class WebhookController
