@@ -54,6 +54,7 @@ class OrdersController
                 'currency_code' => $cart->total->currency->code,
                 'value' => round($cart->total->value / $divider, 2),
             ],
+            'description' => __("Order - :appname", ['appname' => config("app.name")])
         ];
 
         $data = [
@@ -62,6 +63,10 @@ class OrdersController
         ];
 
         $paypalOrder = $paypal->createOrder($data);
+        if(isset($paypalOrder["error"]) && !empty($paypalOrder["error"])) {
+            echo $paypalOrder["error"]['name'].": ".$paypalOrder["error"]["message"];
+            die();
+        }
 
         $transaction = Transaction::create([
             'order_id' => $order->id,
