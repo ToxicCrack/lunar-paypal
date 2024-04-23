@@ -7,6 +7,7 @@ use Lichtblauit\LunarPaypal\Models\Paypal;
 use Lunar\Models\Cart;
 use Lunar\Models\Order;
 use Lunar\Models\Transaction;
+use Lunar\Facades\Discounts;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class OrdersController
