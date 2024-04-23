@@ -42,13 +42,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Lancodev\\LunarPaypal\\": "src",
-            "Lancodev\\LunarPaypal\\Database\\Factories\\": "database/factories"
+            "Lichtblauit\\LunarPaypal\\": "src",
+            "Lichtblauit\\LunarPaypal\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lancodev\\LunarPaypal\\Tests\\": "tests"
+            "Lichtblauit\\LunarPaypal\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -68,10 +68,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Lancodev\\LunarPaypal\\LunarPaypalServiceProvider"
+                "Lichtblauit\\LunarPaypal\\LunarPaypalServiceProvider"
             ],
             "aliases": {
-                "LunarPaypal": "Lancodev\\LunarPaypal\\Facades\\LunarPaypal"
+                "LunarPaypal": "Lichtblauit\\LunarPaypal\\Facades\\LunarPaypal"
             }
         }
     },

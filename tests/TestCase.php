@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Lancodev\\LunarPaypal\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Lichtblauit\\LunarPaypal\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
