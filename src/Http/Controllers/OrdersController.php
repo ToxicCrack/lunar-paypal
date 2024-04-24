@@ -87,7 +87,13 @@ class OrdersController
         $transaction = Transaction::where('reference', $orderId)->first();
 
         $paypal = new Paypal();
+        $response = $paypal->capture($transaction);
+        $response["success"] = true;
 
-        return $paypal->capture($transaction);
+        if(isset($response["error"])) {
+            return response()->json(["success" => false, "message" => __($response["error"]["message"])], 500);
+        }
+
+        return $response;
     }
 }

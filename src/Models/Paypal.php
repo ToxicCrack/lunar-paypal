@@ -108,7 +108,9 @@ class Paypal
         } catch (\Exception $e) {
             return false;
         }
-
+        if(isset($response["error"])) {
+            return $response;
+        }
         $paymentType = key($response['payment_source']);
         $cardType = 'paypal';
         $lastFour = null;
@@ -154,9 +156,9 @@ class Paypal
             $notes = 'Your refund has been processed.';
         }
         $randomId = uniqid('', true);
-        $divider = $this->getPriceDivider($transaction->order->currency_code);
+        $divider = $this->getPriceDivider($transaction->order->currency_code)/100; //$amount is already in cent, but always with 2 decimals
         try {
-            $refund = $this->client->refundCapturedPayment($transaction->reference, $randomId, $amount / $divider, $notes);
+            $refund = $this->client->refundCapturedPayment($transaction->reference, $randomId, $amount/$divider, $notes);
         } catch (\Exception $e) {
             return false;
         }
@@ -165,12 +167,14 @@ class Paypal
             'success' => $refund['status'] === 'COMPLETED',
             'type' => 'refund',
             'driver' => 'paypal',
-            'amount' => $amount,
+            'amount' => $amount*$divider,
             'reference' => $refund['id'],
             'status' => $refund['status'],
             'notes' => $notes,
             'card_type' => 'paypal',
         ]);
+        $transaction->order->status = "cancelled";
+        $transaction->order->save();
 
         return true;
     }
